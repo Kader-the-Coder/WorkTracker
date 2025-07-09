@@ -4,33 +4,41 @@ A simple, clean time tracking app for freelancers and focus-driven individuals. 
 
 ## Why I’m Building This
 
-As a freelancer, I needed a less cluttered alternative to Toggl — something lightweight, easy to use, and built for *me*.
+As a freelancer, I needed a less cluttered alternative to Toggl — something lightweight, easy to use, and built for me.
 
 ## Features (Planned)
 
-- [x] Start/stop time tracking sessions
-- [ ] Create and manage projects
-- [ ] View daily and weekly summaries
-- [ ] Export session logs as CSV
-- [ ] Mobile-friendly interface
-- [ ] Clean UI using Bootstrap
+- [x] Start/stop time tracking sessions  
+- [ ] Create and manage projects  
+- [ ] View daily and weekly summaries  
+- [ ] Export session logs as CSV  
+- [ ] Mobile-friendly interface  
+- [ ] Clean UI using Bootstrap  
 
 ## Tech Stack
 
 - Python (Flask)  
 - HTML/CSS (Bootstrap)  
 - JavaScript (Vanilla)  
-- SQLite
+- SQLite  
 
 ## Screenshots (coming soon)
 
-## Setup Instructions
+## Setup Instructions (coming soon)
 
-```bash
-git clone https://github.com/yourusername/worktracker.git
-cd worktracker
-python -m venv venv
-source venv/bin/activate  # or .\venv\Scripts\activate on Windows
-pip install -r requirements.txt
-python app.py
-```
+## Live Demo (Coming soon)
+
+---
+
+## Roadmap
+
+- [ ] MVP with project + session tracking  
+- [ ] Add weekly stats + charts  
+- [ ] Add CSV export  
+- [ ] Optional: User auth  
+
+---
+
+## License
+
+MIT – Free to use, fork, or build upon.
