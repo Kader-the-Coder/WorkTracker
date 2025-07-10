@@ -15,6 +15,9 @@ As a freelancer, I needed a less cluttered alternative to Toggl — something li
 - [ ] Mobile-friendly interface  
 - [ ] Clean UI using Bootstrap  
 
+See the [design document](docs/DESIGN.md) for more details.
+
+
 ## Tech Stack
 
 - Python (Flask)  
