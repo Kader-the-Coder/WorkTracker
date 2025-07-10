@@ -99,29 +99,30 @@ This document outlines the architecture, core features, data models, user flows,
 
 ```text
 WorkTracker/
-├── app.py
-├── config.py
-├── models.py
-├── utils.py
-├── views/
-│   ├── __init__.py
-│   ├── projects.py
-│   └── sessions.py
+├── docs/
+│   └── DESIGN.md
+├── static/
+│   ├── style.css
+│   └── script.js
 ├── templates/
 │   ├── index.html
 │   ├── projects.html
 │   ├── project_detail.html
-├── static/
-│   ├── style.css
-│   └── script.js
-├── docs/
-│   └── DESIGN.md
 ├── tests/
 │   └── test_projects.py
+├── views/
+│   ├── __init__.py
+│   ├── projects.py
+│   └── sessions.py
+├── app.py
+├── config.py
+├── models.py
+├── utils.py
 ├── requirements.txt
-├── README.md
 ├── .gitignore
+├── README.md
 └── LICENSE
+
 ```
 ---
 
