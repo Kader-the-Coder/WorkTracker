@@ -106,7 +106,7 @@ WorkTracker/
 ├── views/
 │   ├── __init__.py
 │   ├── projects.py
-│   └── time.py
+│   └── sessions.py
 ├── templates/
 │   ├── index.html
 │   ├── projects.html
