@@ -185,7 +185,7 @@ WorkTracker/
 ### v0.0.0 – Repository Initialized
 - [X] Create project folder and initialize Git repository  
 - [X] Create `README.md`, `requirements.txt`, and `.gitignore`  
-- [ ] Configure [project structure](#5-file-structure) 
+- [X] Create [project structure](#5-file-structure) 
 - [ ] Add basic Flask app (`app.py`)  
 
 ---
