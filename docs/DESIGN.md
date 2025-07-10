@@ -4,7 +4,23 @@ This document outlines the architecture, core features, data models, user flows,
 
 ---
 
-## 1. Core Features
+## Table of Contents
+
+1. [Core Features](#1-core-features)  
+2. [User Authentication & Authorization](#2-user-authentication--authorization)  
+3. [API / Route Specifications](#3-api--route-specifications)  
+4. [Session Lifecycle & State Transitions](#4-session-lifecycle--state-transitions)  
+5. [File Structure](#5-file-structure)  
+6. [Error Handling & Validation](#6-error-handling--validation)  
+7. [Security Considerations](#7-security-considerations)  
+8. [Testing Strategy](#8-testing-strategy)  
+9. [Deployment Plan](#9-deployment-plan)  
+10. [Performance Considerations](#10-performance-considerations)  
+11. [Versioned Checklist](#versioned-checklist)
+
+---
+
+# 1. Core Features
 
 ### 1.1 Project Management
 - Add new projects with:
@@ -79,7 +95,37 @@ This document outlines the architecture, core features, data models, user flows,
 
 ---
 
-## 5. Error Handling & Validation
+## 5. File Structure
+
+```text
+WorkTracker/
+├── app.py
+├── config.py
+├── models.py
+├── utils.py
+├── views/
+│   ├── __init__.py
+│   ├── projects.py
+│   └── time.py
+├── templates/
+│   ├── index.html
+│   ├── projects.html
+│   ├── project_detail.html
+├── static/
+│   ├── style.css
+│   └── script.js
+├── docs/
+│   └── DESIGN.md
+├── tests/
+│   └── test_projects.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+└── LICENSE
+```
+---
+
+## 6. Error Handling & Validation
 
 - Validate all form inputs (e.g., project name required, valid color hex codes)
 - Prevent starting timer if another is already active for the project
@@ -89,7 +135,7 @@ This document outlines the architecture, core features, data models, user flows,
 
 ---
 
-## 6. Security Considerations
+## 7. Security Considerations
 
 - Hash passwords securely (bcrypt or similar)
 - Protect all POST endpoints with CSRF tokens
@@ -100,7 +146,7 @@ This document outlines the architecture, core features, data models, user flows,
 
 ---
 
-## 7. Testing Strategy
+## 8. Testing Strategy
 
 - Unit tests for:
   - Database models and `init_db()` correctness
@@ -114,7 +160,7 @@ This document outlines the architecture, core features, data models, user flows,
 
 ---
 
-## 8. Deployment Plan
+## 9. Deployment Plan
 
 - Target deployment on a platform like Heroku, DigitalOcean, or AWS
 - Use environment variables to store secrets and config
@@ -124,7 +170,7 @@ This document outlines the architecture, core features, data models, user flows,
 
 ---
 
-## 9. Performance Considerations
+## 10. Performance Considerations
 
 - Cache generated CSS or static assets to reduce load
 - Optimize database queries, add indexes on user/project/session IDs
@@ -132,3 +178,93 @@ This document outlines the architecture, core features, data models, user flows,
 - Consider moving to a more scalable DB if user base grows
 
 ---
+
+# Versioned Checklist
+
+### v0.0.0 – Repository Initialized
+- [ ] Create project folder and initialize Git repository  
+- [ ] Create `README.md`, `requirements.txt`, and `.gitignore`  
+- [ ] Set up virtual environment  
+- [ ] Add basic Flask app (`app.py`)  
+- [ ] Configure project structure:  
+  - `views/`  
+  - `templates/`  
+  - `static/`  
+  - `models.py`  
+  - `utils.py`  
+
+---
+
+### v0.1.0 – Project and Time Schema + Add Project Form
+- [ ] Define database schema: `projects`, `time_entries`, and `users` tables  
+- [ ] Create `init_db()` in `models.py`  
+- [ ] Create "Add Project" form (name, color, description)  
+- [ ] Store new projects in database  
+- [ ] Display list of projects  
+
+---
+
+### v0.2.0 – Timer Start/Stop Logic
+- [ ] Add start/stop timer endpoint (POST)  
+- [ ] Ensure only one active timer per project  
+- [ ] Create `time_entries` on start, update `end_time` on stop  
+- [ ] Show current total tracked time per project in list  
+- [ ] Add `⏱ Active` indicator for running timers  
+
+---
+
+### v0.3.0 – Live Time Updates
+- [ ] Create `static/script.js`  
+- [ ] Implement real-time DOM update for `<span class="tracked-time">`  
+- [ ] Poll active timers every second  
+- [ ] Format time as `HHh MMm SSs`  
+
+---
+
+### v0.4.0 – Dynamic Color Styling
+- [ ] Generate `/generated/colors.css` dynamically  
+- [ ] Apply project colors via CSS classes (e.g. `.project-red`)  
+- [ ] Update `<select>` options to reflect color styles  
+
+---
+
+### v0.5.0 – View Sessions Per Project
+- [ ] Create a route to view sessions for a given project  
+- [ ] Display session name, start time, end time, and duration  
+- [ ] Link from project list to session view  
+
+---
+
+### v0.6.0 – Edit/Delete Sessions
+- [ ] Add "edit" button per session (name/description only)  
+- [ ] Add "delete" button to remove session  
+- [ ] Confirm before deleting  
+
+---
+
+### v0.7.0 – Date Filtering
+- [ ] Allow filtering sessions by date range  
+- [ ] Add UI date picker or manual form input  
+- [ ] Calculate filtered total time  
+
+---
+
+### v0.8.0 – Export to CSV
+- [ ] Add export button on project/session view  
+- [ ] Generate and download CSV of sessions  
+- [ ] Include duration, project name, date, notes  
+
+---
+
+### v0.9.0 – Responsive UI
+- [ ] Add basic mobile responsiveness  
+- [ ] Improve layout spacing and input scaling  
+- [ ] Test across viewport sizes  
+
+---
+
+### v1.0.0 – Basic Authentication (Optional)
+- [ ] Add user registration and login system  
+- [ ] Associate projects and sessions with user ID  
+- [ ] Require login to access project data  
+
