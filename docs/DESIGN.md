@@ -192,28 +192,27 @@ WorkTracker/
 
 ---
 
-### v0.1.0 – Basic Authentication (Optional)
-- [ ] Add user registration and login system  
-- [ ] Associate projects and sessions with user ID  
-- [ ] Require login to access project data
+### v0.1.0 – User, Project and Time Schema + Add Project Form
+- [ ] Define database schema: `projects`, `time_entries`, and `users` tables  
 
 ---
 
-### v0.2.0 – Project and Time Schema + Add Project Form
-- [ ] Define database schema: `projects`, `time_entries`, and `users` tables  
-- [ ] Create `init_db()` in `models.py`  
+### v0.2.0 – Basic Authentication and Project creation
+- [ ] Add user registration and login system
 - [ ] Create "Add Project" form (name, color, description)  
 - [ ] Store new projects in database  
-- [ ] Display list of projects  
+- [ ] Display list of projects 
+- [ ] Require login to access project data of a given user
 
 ---
 
 ### v0.3.0 – Timer Start/Stop Logic
 - [ ] Add start/stop timer endpoint (POST)  
 - [ ] Ensure only one active timer per project  
-- [ ] Create `time_entries` on start, update `end_time` on stop  
+- [ ] Create `sessions` on start, update `end_time` on stop  
 - [ ] Show current total tracked time per project in list  
-- [ ] Add `⏱ Active` indicator for running timers  
+- [ ] Add `⏱ Active` indicator for running timers
+- [ ] Add `⏱ Active` indicator for running timers
 
 ---
 
