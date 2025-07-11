@@ -230,7 +230,7 @@ WorkTracker/
 ---
 
 ### v0.1.0 – User, Project and Time Schema + Add Project Form
-- [ ] Define [database schema](#database-schema): `projects`, `time_entries`, and `users` tables  
+- [X] Define [database schema](#database-schema): `projects`, `time_entries`, and `users` tables  
 
 ---
 
