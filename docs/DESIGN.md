@@ -6,23 +6,24 @@ This document outlines the architecture, core features, data models, user flows,
 
 ## Table of Contents
 
-1. [Core Features](#1-core-features)  
-2. [User Authentication & Authorization](#2-user-authentication--authorization)  
-3. [API / Route Specifications](#3-api--route-specifications)  
-4. [Session Lifecycle & State Transitions](#4-session-lifecycle--state-transitions)  
-5. [File Structure](#5-file-structure)  
-6. [Error Handling & Validation](#6-error-handling--validation)  
-7. [Security Considerations](#7-security-considerations)  
-8. [Testing Strategy](#8-testing-strategy)  
-9. [Deployment Plan](#9-deployment-plan)  
-10. [Performance Considerations](#10-performance-considerations)  
-11. [Versioned Checklist](#versioned-checklist)
+- [Core Features](#core-features)  
+- [User Authentication & Authorization](#user-authentication--authorization)  
+- [API / Route Specifications](#api--route-specifications)  
+- [Session Lifecycle & State Transitions](#session-lifecycle--state-transitions)  
+- [File Structure](#file-structure)  
+- [Database Schema](#database-schema)  
+- [Error Handling & Validation](#error-handling--validation)  
+- [Security Considerations](#security-considerations)  
+- [Testing Strategy](#testing-strategy)  
+- [Deployment Plan](#deployment-plan)  
+- [Performance Considerations](#performance-considerations)  
+- [Versioned Checklist](#versioned-checklist)
 
 ---
 
-# 1. Core Features
+# Core Features
 
-### 1.1 Project Management
+### Project Management
 - Add new projects with:
   - Name
   - Color
@@ -32,7 +33,7 @@ This document outlines the architecture, core features, data models, user flows,
 - Assign each project a distinct text color
 - Selecting a project navigates to a submenu where sessions can be created
 
-### 1.2 Sessions
+### Sessions
 - Start a new session by clicking “Start” on a project or session submenu
 - Sessions are named numerically, defined by a prefix (e.g. Task X, or Session X)
 - Timer controls per session:
@@ -41,20 +42,20 @@ This document outlines the architecture, core features, data models, user flows,
   - Resume session timer after break ends
 - Modify session start/end times manually
 
-### 1.3 Time Tracking
+### Time Tracking
 - One active session per project at a time
 - Show tracked time as `HHh MMm SSs`
 - Timer updates live in the browser (without page reload)
 - All session data stored in a SQLite database
 
-### 1.4 Real-Time UI
+### Real-Time UI
 - Timer updates every second for active sessions
 - Active projects display a badge: `⏱ Active`
 - Dynamic project colors via CSS classes and a generated stylesheet
 
 ---
 
-## 2. User Authentication & Authorization
+## User Authentication & Authorization
 
 - User registration and login system
 - Passwords stored securely with hashing (e.g., bcrypt)
@@ -65,7 +66,7 @@ This document outlines the architecture, core features, data models, user flows,
 
 ---
 
-## 3. API / Route Specifications
+## API / Route Specifications
 
 | Route                    | Method  | Description                          | Inputs                   | Outputs                         |
 |--------------------------|---------|--------------------------------------|--------------------------|---------------------------------|
@@ -81,7 +82,7 @@ This document outlines the architecture, core features, data models, user flows,
 
 ---
 
-## 4. Session Lifecycle & State Transitions
+## Session Lifecycle & State Transitions
 
 | Action         | Result                                                          | Notes                                           |
 |----------------|-----------------------------------------------------------------|-------------------------------------------------|
@@ -95,7 +96,7 @@ This document outlines the architecture, core features, data models, user flows,
 
 ---
 
-## 5. File Structure
+## File Structure
 
 ```text
 WorkTracker/
@@ -127,7 +128,33 @@ WorkTracker/
 ```
 ---
 
-## 6. Error Handling & Validation
+## Database Schema
+
+### `projects`
+
+| Column      | Type      | Description      |
+|-------------|-----------|------------------|
+| id          | INTEGER   | Primary Key      |
+| name        | TEXT      | Project name     |
+| color       | TEXT      | Display color    |
+| description | TEXT      | Optional details |
+| created_at  | TIMESTAMP | Default: now     |
+
+### `time_entries`
+
+| Column      | Type      | Description                       |
+|-------------|-----------|-----------------------------------|
+| id          | INTEGER   | Primary Key                       |
+| project_id  | INTEGER   | FK → `projects.id`                |
+| name        | TEXT      | Session name                      |
+| description | TEXT      | Optional notes                    |
+| start_time  | TIMESTAMP | Start of session                  |
+| end_time    | TIMESTAMP | Nullable — only when stopped      |
+| created_at  | TIMESTAMP | Default: now                      |
+
+---
+
+## Error Handling & Validation
 
 - Validate all form inputs (e.g., project name required, valid color hex codes)
 - Prevent starting timer if another is already active for the project
@@ -137,7 +164,7 @@ WorkTracker/
 
 ---
 
-## 7. Security Considerations
+## Security Considerations
 
 - Hash passwords securely (bcrypt or similar)
 - Protect all POST endpoints with CSRF tokens
@@ -148,7 +175,7 @@ WorkTracker/
 
 ---
 
-## 8. Testing Strategy
+## Testing Strategy
 
 - Unit tests for:
   - Database models and `init_db()` correctness
