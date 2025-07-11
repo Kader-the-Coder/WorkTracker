@@ -152,6 +152,16 @@ WorkTracker/
 | end_time    | TIMESTAMP | Nullable — only when stopped      |
 | created_at  | TIMESTAMP | Default: now                      |
 
+### `users`
+| Column      | Type      | Description          |
+| ----------- | --------- | -------------------- |
+| id          | INTEGER   | Primary Key          |
+| name        | TEXT      | User's full name     |
+| email       | TEXT      | Unique email address |
+| password    | TEXT      | Hashed password      |
+| created_at  | TIMESTAMP | Default: now         |
+
+
 ---
 
 ## Error Handling & Validation
@@ -213,14 +223,14 @@ WorkTracker/
 ### v0.0.0 – Repository Initialized
 - [X] Create project folder and initialize Git repository  
 - [X] Create `README.md`, `requirements.txt`, and `.gitignore`  
-- [X] Create [project structure](#5-file-structure) 
+- [X] Create [project structure](#file-structure) 
 - [X] Add basic Flask app (`app.py`)  
 - [X] Create `layout.html` for template inheritance
 
 ---
 
 ### v0.1.0 – User, Project and Time Schema + Add Project Form
-- [ ] Define database schema: `projects`, `time_entries`, and `users` tables  
+- [ ] Define [database schema](#database-schema): `projects`, `time_entries`, and `users` tables  
 
 ---
 
