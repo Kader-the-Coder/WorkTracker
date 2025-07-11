@@ -192,7 +192,14 @@ WorkTracker/
 
 ---
 
-### v0.1.0 – Project and Time Schema + Add Project Form
+### v0.1.0 – Basic Authentication (Optional)
+- [ ] Add user registration and login system  
+- [ ] Associate projects and sessions with user ID  
+- [ ] Require login to access project data
+
+---
+
+### v0.2.0 – Project and Time Schema + Add Project Form
 - [ ] Define database schema: `projects`, `time_entries`, and `users` tables  
 - [ ] Create `init_db()` in `models.py`  
 - [ ] Create "Add Project" form (name, color, description)  
@@ -201,7 +208,7 @@ WorkTracker/
 
 ---
 
-### v0.2.0 – Timer Start/Stop Logic
+### v0.3.0 – Timer Start/Stop Logic
 - [ ] Add start/stop timer endpoint (POST)  
 - [ ] Ensure only one active timer per project  
 - [ ] Create `time_entries` on start, update `end_time` on stop  
@@ -210,7 +217,7 @@ WorkTracker/
 
 ---
 
-### v0.3.0 – Live Time Updates
+### v0.4.0 – Live Time Updates
 - [ ] Create `static/script.js`  
 - [ ] Implement real-time DOM update for `<span class="tracked-time">`  
 - [ ] Poll active timers every second  
@@ -218,50 +225,42 @@ WorkTracker/
 
 ---
 
-### v0.4.0 – Dynamic Color Styling
+### v0.5.0 – Dynamic Color Styling
 - [ ] Generate `/generated/colors.css` dynamically  
 - [ ] Apply project colors via CSS classes (e.g. `.project-red`)  
 - [ ] Update `<select>` options to reflect color styles  
 
 ---
 
-### v0.5.0 – View Sessions Per Project
+### v0.6.0 – View Sessions Per Project
 - [ ] Create a route to view sessions for a given project  
 - [ ] Display session name, start time, end time, and duration  
 - [ ] Link from project list to session view  
 
 ---
 
-### v0.6.0 – Edit/Delete Sessions
+### v0.7.0 – Edit/Delete Sessions
 - [ ] Add "edit" button per session (name/description only)  
 - [ ] Add "delete" button to remove session  
 - [ ] Confirm before deleting  
 
 ---
 
-### v0.7.0 – Date Filtering
+### v0.8.0 – Date Filtering
 - [ ] Allow filtering sessions by date range  
 - [ ] Add UI date picker or manual form input  
 - [ ] Calculate filtered total time  
 
 ---
 
-### v0.8.0 – Export to CSV
+### v0.9.0 – Export to CSV
 - [ ] Add export button on project/session view  
 - [ ] Generate and download CSV of sessions  
 - [ ] Include duration, project name, date, notes  
 
 ---
 
-### v0.9.0 – Responsive UI
+### v1.0.0 – Responsive UI
 - [ ] Add basic mobile responsiveness  
 - [ ] Improve layout spacing and input scaling  
 - [ ] Test across viewport sizes  
-
----
-
-### v1.0.0 – Basic Authentication (Optional)
-- [ ] Add user registration and login system  
-- [ ] Associate projects and sessions with user ID  
-- [ ] Require login to access project data  
-
