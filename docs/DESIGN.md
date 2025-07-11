@@ -106,6 +106,7 @@ WorkTracker/
 │   └── script.js
 ├── templates/
 │   ├── index.html
+│   ├── layout.html
 │   ├── projects.html
 │   ├── project_detail.html
 ├── tests/
@@ -186,7 +187,8 @@ WorkTracker/
 - [X] Create project folder and initialize Git repository  
 - [X] Create `README.md`, `requirements.txt`, and `.gitignore`  
 - [X] Create [project structure](#5-file-structure) 
-- [ ] Add basic Flask app (`app.py`)  
+- [X] Add basic Flask app (`app.py`)  
+- [X] Create `layout.html` for template inheritance
 
 ---
 
