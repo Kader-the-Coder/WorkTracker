@@ -1,4 +1,5 @@
 import sqlite3
+from werkzeug.security import generate_password_hash
 
 
 def init_db():
@@ -41,3 +42,22 @@ def init_db():
         """)
 
         conn.commit()
+
+
+def add_user(username, password, email):
+    hashed = generate_password_hash(password)
+    with sqlite3.connect("instance\\database.db") as conn:
+        conn.execute(
+            "INSERT INTO users (username, password, email) VALUES (?, ?, ?)",
+            (username, hashed, email),
+        )
+        conn.commit()
+        return get_user_by_username(username)
+
+
+def get_user_by_username(username):
+    with sqlite3.connect("instance\\database.db") as conn:
+        cursor = conn.cursor()
+        return cursor.execute(
+            "SELECT * FROM users WHERE username = ?", (username,)
+        ).fetchone()
