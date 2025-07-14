@@ -1,8 +1,8 @@
-{% extends "layout.html" %}
+{% extends "layout.html.jinja" %}
 {% block title %}Home{% endblock %}
 
 {% block content %}
   <h1>WorkTracker</h1>
   <p class="important">
-    Welcome. Lets get down to tracking...
+    Welcome. <a href="{{ url_for('auth.login') }}">Login</a> or <a href="{{ url_for('auth.register') }}">Register</a> to sign-up to start tracking stuff...
 {% endblock %}

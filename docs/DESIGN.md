@@ -106,10 +106,13 @@ WorkTracker/
 │   ├── style.css
 │   └── script.js
 ├── templates/
-│   ├── index.html
-│   ├── layout.html
-│   ├── projects.html
-│   ├── project_detail.html
+│   ├── dashboard.html.jinja
+│   ├── index.html.jinja
+│   ├── layout.html.jinja
+│   ├── login.html.jinja
+│   ├── project_detail.html.jinja
+│   ├── projects.html.jinja
+│   └── register.html.jinja
 ├── tests/
 │   └── test_projects.py
 ├── views/
@@ -235,7 +238,7 @@ WorkTracker/
 ---
 
 ### v0.2.0 – Basic Authentication and Project creation
-- [ ] Add user registration and login system
+- [x] Add user registration and login\logout system
 - [ ] Create "Add Project" form (name, color, description)  
 - [ ] Store new projects in database  
 - [ ] Display list of projects 
