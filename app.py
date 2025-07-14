@@ -1,25 +1,13 @@
 import os
 import sys
 from db import init_db
-from functools import wraps
-from flask import (
-    Flask, flash, render_template, url_for, redirect, session
-)
+from flask import Flask, render_template
+from utils import login_required
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")
 if app.secret_key is None:
     raise RuntimeError("SECRET_KEY not set in environment!")
-
-
-def login_required(view):
-    @wraps(view)
-    def wrapper(*args, **kwargs):
-        if "user_id" not in session:
-            flash("Please log in first.", "error")
-            return redirect(url_for("login"))
-        return view(*args, **kwargs)
-    return wrapper
 
 
 @app.route("/")
