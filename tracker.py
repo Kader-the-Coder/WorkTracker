@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, render_template, redirect, url_for, request, session
+    Blueprint, render_template, redirect, url_for, flash, request, session
 )
 from utils import login_required
 from db import add_project, get_projects
@@ -17,12 +17,13 @@ def index():
 def dashboard():
     if request.method == "POST":
         user_id = session["user_id"]
-        project_name = request.form["project_name"]
-        project_color = request.form["project_color"]
-        project_description = request.form["project_description"]
+        proj_name = request.form["project_name"]
+        proj_color = request.form["project_color"]
+        proj_desc = request.form["project_description"]
+        if not add_project(user_id, proj_name, proj_color, proj_desc):
+            flash("Project already exists", "error")
 
-        add_project(user_id, project_name, project_color, project_description)
         return redirect(url_for("tracker.dashboard"))
 
-    projects = get_projects(session["user_id"])
-    return render_template("dashboard.html.jinja", projects=projects)
+    proj = get_projects(session["user_id"])
+    return render_template("dashboard.html.jinja", projects=proj)

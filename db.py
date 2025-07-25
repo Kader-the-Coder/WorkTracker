@@ -18,12 +18,14 @@ def init_db():
             CREATE TABLE IF NOT EXISTS projects (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER NOT NULL,
-                name TEXT NOT NULL UNIQUE,
+                name TEXT NOT NULL,
                 color TEXT NOT NULL,
                 description TEXT DEFAULT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+                UNIQUE(user_id, name)
             );
+
 
             CREATE TABLE IF NOT EXISTS time_entries (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -64,13 +66,17 @@ def get_user_by_username(username):
 
 
 def add_project(user_id, name, color, description=""):
-    with sqlite3.connect("instance\\database.db") as conn:
-        conn.execute(
-            "INSERT INTO projects (user_id, name, color, description) "
-            "VALUES (?, ?, ?, ?)",
-            (user_id, name, color, description),
-        )
-        conn.commit()
+    try:
+        with sqlite3.connect("instance\\database.db") as conn:
+            conn.execute(
+                "INSERT INTO projects (user_id, name, color, description) "
+                "VALUES (?, ?, ?, ?)",
+                (user_id, name, color, description),
+            )
+            conn.commit()
+        return True
+    except sqlite3.IntegrityError:
+        return False
 
 
 def get_projects(user_id):
