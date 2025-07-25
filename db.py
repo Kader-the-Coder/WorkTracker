@@ -18,7 +18,7 @@ def init_db():
             CREATE TABLE IF NOT EXISTS projects (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER NOT NULL,
-                name TEXT NOT NULL,
+                name TEXT NOT NULL UNIQUE,
                 color TEXT NOT NULL,
                 description TEXT DEFAULT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -61,3 +61,31 @@ def get_user_by_username(username):
         return cursor.execute(
             "SELECT * FROM users WHERE username = ?", (username,)
         ).fetchone()
+
+
+def add_project(user_id, name, color, description=""):
+    with sqlite3.connect("instance\\database.db") as conn:
+        conn.execute(
+            "INSERT INTO projects (user_id, name, color, description) "
+            "VALUES (?, ?, ?, ?)",
+            (user_id, name, color, description),
+        )
+        conn.commit()
+
+
+def get_projects(user_id):
+    with sqlite3.connect("instance\\database.db") as conn:
+        cursor = conn.cursor()
+        data = cursor.execute(
+            "SELECT * FROM projects WHERE user_id = ?", (user_id,)
+        ).fetchall()
+
+        return [
+            {
+                "id": project[0],
+                "name": project[2],
+                "color": project[3],
+                "description": project[4],
+            }
+            for project in data
+        ]

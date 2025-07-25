@@ -239,10 +239,10 @@ WorkTracker/
 
 ### v0.2.0 – Basic Authentication and Project creation
 - [x] Add user registration and login\logout system
-- [ ] Create "Add Project" form (name, color, description)  
-- [ ] Store new projects in database  
-- [ ] Display list of projects 
-- [ ] Require login to access project data of a given user
+- [x] Create "Add Project" form (name, color, description)  
+- [x] Store new projects in database  
+- [x] Display list of projects 
+- [x] Require login to access project data of a given user
 
 ---
 

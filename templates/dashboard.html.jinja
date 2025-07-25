@@ -7,5 +7,21 @@
     Welcome. Lets get down to tracking...
   </p>
 
+  <form method="POST">
+    <input type="text" name="project_name" placeholder="Project Name" required>
+    <input type="color" name="project_color" placeholder="Project Color" required>
+    <input type="dropdown" name="project_description" placeholder="Project Description">
+    <input type="submit" value="Add Project">
+  </form>
+
+  {% for project in projects %}
+    <div style="background-color: {{ project.color }}; padding: 0.5em">
+      <div style="background-color: white; padding: 0.5em">
+        <p>{{ project.name }}:</p>
+        <p>{{ project.description }}</p>
+      </div>
+    </div>
+  {% endfor %}
+
   <a href="{{ url_for('auth.logout') }}">Logout</a>
 {% endblock %}

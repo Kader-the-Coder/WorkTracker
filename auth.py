@@ -22,7 +22,7 @@ def register():
 
         user = add_user(username, password, email)
         login_user(user)
-        return redirect(url_for("dashboard"))
+        return redirect(url_for("tracker.dashboard"))
     return render_template("register.html.jinja")
 
 
@@ -35,7 +35,7 @@ def login():
 
         if user and check_password_hash(user[2], password):
             login_user(user)
-            return redirect(url_for("dashboard"))
+            return redirect(url_for("tracker.dashboard"))
         else:
             flash("Invalid username or password", "error")
     return render_template("login.html.jinja")

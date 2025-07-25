@@ -1,29 +1,24 @@
 import os
 import sys
 from db import init_db
-from flask import Flask, render_template
-from utils import login_required
+from flask import Flask
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")
 if app.secret_key is None:
-    raise RuntimeError("SECRET_KEY not set in environment!")
-
-
-@app.route("/")
-def index():
-    return render_template("index.html.jinja")
-
-
-@app.route("/dashboard")
-@login_required
-def dashboard():
-    return render_template("dashboard.html.jinja")
-
+    raise RuntimeError(
+        "SECRET_KEY not set in environment! "
+        "Please add the following to your environment:\n"
+        "$env:SECRET_KEY = \"your-very-secret-random-string\""
+    )
 
 if __name__ == "__main__":
     from auth import auth_bp
+    from tracker import tracker_bp
+
     app.register_blueprint(auth_bp)
+    app.register_blueprint(tracker_bp)
+
     db_exists = os.path.exists("instance\\database.db")
     args = sys.argv[1:]
 
